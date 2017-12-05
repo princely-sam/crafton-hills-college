@@ -5,8 +5,8 @@
 #include <iostream>
 using namespace std;
 
-void displayDungeonOne(char dungeonOne[20][80]);		//declaring dungeon room one
-void displayHallwayOne(char hallwayOne[15][30]);		//declaring hallway one
+void displayBoard(char map[20][80]);		//declaring dungeon room one
+//void displayHallwayOne(char hallwayOne[15][30]);		//declaring hallway one
 
 class hero {
 public:
@@ -26,7 +26,7 @@ hero::hero() {
 
 int main()
 {
-	char dungeonOne[20][80];
+	char map[20][80];
 	hero position;
 	char move;
 
@@ -46,7 +46,47 @@ int main()
 		}
 	}
 
-	//writing map parts hallway 1
+	//moving on map
+
+	while (true) {
+
+		displayBoard(map);
+
+		cout << "Enter WASD to move: ";
+		cin >> move;
+
+		if (move == 'w') {
+			if dungeonOne[position.x - 1][position.y] != char(178) {
+				dungeonOne[position.x][position.y] = ' ';
+				dungeonOne[position.x - 1][position.y] = position.player;
+				position.x--;
+			}
+		}
+		if (move == 's') {
+			if dungeonOne[position.x + 1][position.y] != char(178) {
+				dungeonOne[position.x][position.y] = ' ';
+				dungeonOne[position.x + 1][position.y] = position.player;
+				position.x++;
+			}
+		}
+		if (move == 'a') {
+			if dungeonOne[position.x][position.y - 1] != char(178) {
+				dungeonOne[position.x][position.y] = ' ';
+				dungeonOne[position.x][position.y - 1] = position.player;
+				position.y--;
+			}
+		}
+		if (move == 'd') {
+			if dungeonOne[position.x][position.y + 1] != char(178) {
+				dungeonOne[position.x][position.y] = ' ';
+				dungeonOne[position.x][position.y + 1] = position.player;
+				position.y++;
+			}
+		}
+
+
+
+	}
 
 
     return 0;
@@ -54,17 +94,17 @@ int main()
 
 
 //displaying map parts
-void displayDungeonOne(char dungeonOne[20][80]) {
+void displayBoard(char map[20][80]) {
 	for (int i = 0; i < 20; i++) {
 		for (int j = 0; j < 80; j++) {
 
-			cout << dungeonOne[i][j];
+			cout << map[i][j];
 		}
 		cout << endl;
 	}
 }
 
-void displayHallwayOne(char hallwayOne[15][30]) {
+//void displayHallwayOne(char hallwayOne[15][30]) {
 	for (int i = 0; i < 15; i++) {
 		for (int j = 0; j < 30; j++) {
 			
@@ -72,4 +112,4 @@ void displayHallwayOne(char hallwayOne[15][30]) {
 		}
 		cout << endl;
 	}
-}
+//}
